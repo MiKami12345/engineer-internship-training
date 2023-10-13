@@ -19,7 +19,7 @@
 
 <body>
     <div class="header">
-        <span>N（ベータバージョン）</span>
+        <span><?php echo $this->get('pageName') ?></span>
     </div>
 
     <br>
@@ -41,6 +41,9 @@
                     <button type="submit" class="post-form-submit-button">投稿</button>
                 </div>
             </form>
+            <div id="reload">
+                <a href=""></a>
+            </div>
             <hr>
             <!-- 投稿一覧 -->
             <div class="posts">
@@ -52,12 +55,14 @@
                                 <img src="/imgs/egg_purple.png" class="post-image" alt="egg_icon">
                             </div>
                             <div class="post-info" data-id="<?=$post['id']?>">
-                                <input type="text" class="post-name post-not-edit-input" value="{名前}" readonly><br>
-                                <textarea class="post-text post-not-edit-textarea" readonly>Hello, world</textarea>
+                                <input type="text" class="post-name post-not-edit-input" value=<?=$post['name']?> readonly><br>
+                                <textarea class="post-text post-not-edit-textarea" readonly><?php echo $post['message']?></textarea>
+                                <span><?php echo $post['created_at']?></span>
                                 <div class="post-action">
                                     <button type="button" class="post-action-btn edit-btn" onclick="editPost(this)">✒️編集</button>
                                     <button type="button" class="post-action-btn delete-btn" onclick="deletePost(this)">🗑削除</button>
                                 </div>
+                                
                             </div>
                         </div>
                     <?php endforeach; ?>
